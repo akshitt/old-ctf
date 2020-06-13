@@ -2,13 +2,15 @@ import os
 
 ''' GENERATE SECRET KEY '''
 
-with open('.ctfd_secret_key', 'a+b') as secret:
-    secret.seek(0)  # Seek to beginning of file since a+ mode leaves you at the end and w+ deletes the file
-    key = secret.read()
-    if not key:
-        key = os.urandom(64)
-        secret.write(key)
-        secret.flush()
+#with open('.ctfd_secret_key', 'a+b') as secret:
+ #   secret.seek(0)  # Seek to beginning of file since a+ mode leaves you at the end and w+ deletes the file
+ #   key = secret.read()
+ #   if not key:
+ #       key = os.urandom(64)
+ #       secret.write(key)
+ #       secret.flush()
+
+key = "\xef\xf8\x99\xd6wZ\xad_'\xf3\xf7\xe4\xa6\x9c\xaf\x86Y<w\xf4#A\\\xe4\xc2\xe0\x16\xd7\xf5\x983\x89A\x89\xce*\xcfO\x93\x89\x96O\x1f]\r`A\xf5\xaf^\xbc\xa6\xe8[\x8c\x12\x12\xb6R^1\x81\x12L"
 
 ''' SERVER SETTINGS '''
 
@@ -32,7 +34,8 @@ class Config(object):
 
     http://flask-sqlalchemy.pocoo.org/2.1/config/#configuration-keys
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///{}/ctfd.db'.format(os.path.dirname(os.path.abspath(__file__)))
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:////var/www/ctf.wncc-iitb.org/CTFd/data/ctfd.db'.format(os.path.dirname(os.path.abspath(__file__)))
+
 
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS is automatically disabled to suppress warnings and save memory. You should only enable
@@ -65,12 +68,12 @@ class Config(object):
     '''
     HOST specifies the hostname where the CTFd instance will exist. It is currently unused.
     '''
-    HOST = ".ctfd.io"
+    HOST = "ctf.akashtrehan.com"
 
     '''
     MAILFROM_ADDR is the email address that emails are sent from if not overridden in the configuration panel.
     '''
-    MAILFROM_ADDR = "noreply@ctfd.io"
+    MAILFROM_ADDR = "ctf@akashtrehan.com"
 
     '''
     UPLOAD_FOLDER is the location where files are uploaded.
